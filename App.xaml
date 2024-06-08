@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:LibraryManagementApp"
              xmlns:vm="clr-namespace:LibraryManagementApp.ViewModels"
-              xmlns:vw="clr-namespace:LibraryManagementApp.Views"
+             xmlns:vw="clr-namespace:LibraryManagementApp.Views"
+             xmlns:h="clr-namespace:LibraryManagementApp.Helpers"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -19,6 +20,16 @@
             <DataTemplate DataType="{x:Type vm:BookListViewModel}">
                 <vw:BookListView/>
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:MemberListViewModel}">
+                <vw:MemberListView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:LoanListViewModel}">
+                <vw:LoanListView/>
+            </DataTemplate>
+
+            <h:ViewModelConverter x:Key="ViewModelConverter"/>
             
         </ResourceDictionary>
     </Application.Resources>

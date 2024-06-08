@@ -8,7 +8,8 @@
              xmlns:vm="clr-namespace:LibraryManagementApp.ViewModels"
              mc:Ignorable="d" >
 
-    
+
+
     <StackPanel>
         <TextBlock Text="Hi, User!" Foreground="#F7FFF7" FontSize="40" HorizontalAlignment="Left" Margin="0,0,0,10"/>
 
@@ -87,7 +88,6 @@
                             <TextBlock Text="Total Books" Foreground="#F7FFF7" FontSize="20" Margin="20,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                         </StackPanel>
                     </Grid>
-
                 </Border>
 
                 <Border Width="340" Height="121.6" CornerRadius="10" Margin="50,0,0,25">

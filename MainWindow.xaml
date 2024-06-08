@@ -39,14 +39,20 @@
                    HorizontalAlignment="Left" Margin="50,0,0,0" Foreground="#F7FFF7"/>
 
             <StackPanel Grid.Row="2">
-                <RadioButton Content="Home" Height="50" Foreground="#F7FFF7" FontSize="14" Style="{StaticResource MenuButtonTheme}" 
-                             IsChecked="True" Command="{Binding HomeViewCommand}"/>
+                <RadioButton Content="Home" Height="50" Foreground="#F7FFF7" FontSize="14" Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="{Binding CurrentView, Converter={StaticResource ViewModelConverter}, ConverterParameter={x:Type vm:HomeViewModel}}" 
+                             Command="{Binding HomeViewCommand}"/>
                 <RadioButton Content="Book List" Height="50" Foreground="#F7FFF7" FontSize="14" Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="{Binding CurrentView, Converter={StaticResource ViewModelConverter}, ConverterParameter={x:Type vm:BookListViewModel}}"
                              Command="{Binding BookListViewCommand}"/>
-                <RadioButton Content="Member List" Height="50" Foreground="#F7FFF7" FontSize="14" 
-                             Style="{StaticResource MenuButtonTheme}"  Command="{Binding MemberListViewCommand}"/>
-                <RadioButton Content="Loan List" Height="50" Foreground="#F7FFF7" FontSize="14" 
-                             Style="{StaticResource MenuButtonTheme}"  Command="{Binding LoanListViewCommand}"/>
+                <RadioButton Content="Member List" Height="50" Foreground="#F7FFF7" FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}" 
+                             IsChecked="{Binding CurrentView, Converter={StaticResource ViewModelConverter}, ConverterParameter={x:Type vm:MemberListViewModel}}"
+                             Command="{Binding MemberListViewCommand}"/>
+                <RadioButton Content="Loan List" Height="50" Foreground="#F7FFF7" FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}" 
+                             IsChecked="{Binding CurrentView, Converter={StaticResource ViewModelConverter}, ConverterParameter={x:Type vm:LoanListViewModel}}"
+                             Command="{Binding LoanListViewCommand}"/>
             </StackPanel>
 
             <TextBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" 

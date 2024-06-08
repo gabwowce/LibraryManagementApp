@@ -19,8 +19,12 @@ namespace LibraryManagementApp.ViewModels
         public ICommand MemberListViewCommand { get; }
         public ICommand LoanListViewCommand { get; }
 
+        private MainViewModel _mainViewModel;
+
         public HomeViewModel(MainViewModel mainViewModel)
         {
+            _mainViewModel = mainViewModel ?? throw new ArgumentNullException(nameof(mainViewModel));
+
             Books = new ObservableCollection<Book>
         {
             new Book { Title = "Come and Get It", Author = "by Kiley Reid", ImageSource = "Images/Book1.jpg" },
@@ -30,10 +34,11 @@ namespace LibraryManagementApp.ViewModels
             new Book { Title = "Help Wanted", Author = "by Adelle Waldman", ImageSource = "Images/Book5.jpg" },
         };
 
-            HomeViewCommand = mainViewModel.HomeViewCommand;
-            BookListViewCommand = mainViewModel.BookListViewCommand;
-            MemberListViewCommand = mainViewModel.MemberListViewCommand;
-            LoanListViewCommand = mainViewModel.LoanListViewCommand;
+            BookListViewCommand = new RelayCommand(o => _mainViewModel.CurrentView = _mainViewModel.BookListVM);
+            MemberListViewCommand = new RelayCommand(o => _mainViewModel.CurrentView = _mainViewModel.MemberListVM);
+            LoanListViewCommand = new RelayCommand(o => _mainViewModel.CurrentView = _mainViewModel.LoanListVM);
         }
+
+
     }
 }

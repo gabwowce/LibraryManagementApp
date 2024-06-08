@@ -1,6 +1,7 @@
 ﻿using LibraryManagementApp.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,22 @@ namespace LibraryManagementApp.ViewModels
             {
                 _currentView = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(SelectedView));
+            }
+        }
+        public string SelectedView
+        {
+            get
+            {
+                if (CurrentView == HomeVM)
+                    return "Home";
+                if (CurrentView == BookListVM)
+                    return "BookList";
+                if (CurrentView == MemberListVM)
+                    return "MemberList";
+                if (CurrentView == LoanListVM)
+                    return "LoanList";
+                return string.Empty;
             }
         }
 
@@ -36,6 +53,9 @@ namespace LibraryManagementApp.ViewModels
         {
             HomeVM = new HomeViewModel(this);
             BookListVM = new BookListViewModel();
+            MemberListVM = new MemberListViewModel();
+            LoanListVM = new LoanListViewModel();
+
             CurrentView = HomeVM;
 
 
@@ -47,6 +67,7 @@ namespace LibraryManagementApp.ViewModels
             BookListViewCommand = new RelayCommand(o =>
             {
                 CurrentView = BookListVM;
+                Debug.WriteLine("----------------------->BookViewCommand Executed<------------------------");
             });
             MemberListViewCommand = new RelayCommand(o =>
             {
