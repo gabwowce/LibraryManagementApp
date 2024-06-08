@@ -1,5 +1,4 @@
-﻿using LibraryManagementApp.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,12 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LibraryManagementApp
+namespace LibraryManagementApp.Views
 {
-
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for MemberListView.xaml
+    /// </summary>
+    public partial class MemberListView : UserControl
     {
-        public MainWindow()
+        public MemberListView()
         {
             InitializeComponent();
         }

@@ -4,7 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LibraryManagementApp.Views"
+             xmlns:vw="clr-namespace:LibraryManagementApp.Views"
+             xmlns:vm="clr-namespace:LibraryManagementApp.ViewModels"
              mc:Ignorable="d" >
+
+    
     <StackPanel>
         <TextBlock Text="Hi, User!" Foreground="#F7FFF7" FontSize="40" HorizontalAlignment="Left" Margin="0,0,0,10"/>
 
@@ -72,7 +76,11 @@
                             </Style.Triggers>
                         </Style>
                     </Border.Style>
-                    
+
+                    <Border.InputBindings>
+                        <MouseBinding Gesture="LeftClick" Command="{Binding BookListViewCommand}" />
+                    </Border.InputBindings>
+
                     <Grid>
                         <StackPanel>
                             <TextBlock Text="1203" Foreground="#F7FFF7" FontSize="55" Margin="20,10,10,-10" HorizontalAlignment="Center"/>
@@ -108,7 +116,11 @@
                             </Style.Triggers>
                         </Style>
                     </Border.Style>
-                    
+
+                    <Border.InputBindings>
+                        <MouseBinding Gesture="LeftClick" Command="{Binding MemberListViewCommand}" />
+                    </Border.InputBindings>
+
                     <Grid>
                         <StackPanel>
                             <TextBlock Text="583" Foreground="White" FontSize="55" Margin="20,10,10,-10" HorizontalAlignment="Center"/>
@@ -144,7 +156,11 @@
                             </Style.Triggers>
                         </Style>
                     </Border.Style>
-                    
+
+                    <Border.InputBindings>
+                        <MouseBinding Gesture="LeftClick" Command="{Binding LoanListViewCommand}" />
+                    </Border.InputBindings>
+
                     <Grid>
                         <StackPanel>
                             <TextBlock Text="132" Foreground="#F7FFF7" FontSize="55" Margin="20,10,10,-10" HorizontalAlignment="Center"/>

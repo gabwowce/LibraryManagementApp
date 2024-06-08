@@ -13,21 +13,10 @@
         WindowStartupLocation="CenterScreen"
         SizeToContent="WidthAndHeight"
         WindowStyle="None">
-
+    
     <Window.DataContext>
-        <vm:MainViewModel />
+        <vm:MainViewModel/>
     </Window.DataContext>
-
-    <Window.Resources>
-        <DataTemplate DataType="{x:Type vm:HomeViewModel}">
-            <vw:HomeView />
-        </DataTemplate>
-
-        <DataTemplate DataType="{x:Type vm:BookListViewModel}">
-            <vw:BookListView />
-        </DataTemplate>
-
-    </Window.Resources>
 
     <Border Background="#343434" CornerRadius="40">
 
@@ -54,21 +43,16 @@
                              IsChecked="True" Command="{Binding HomeViewCommand}"/>
                 <RadioButton Content="Book List" Height="50" Foreground="#F7FFF7" FontSize="14" Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding BookListViewCommand}"/>
-                <RadioButton Content="Member List" Height="50" Foreground="#F7FFF7" FontSize="14" Style="{StaticResource MenuButtonTheme}"/>
-                <RadioButton Content="Loan List" Height="50" Foreground="#F7FFF7" FontSize="14" Style="{StaticResource MenuButtonTheme}"/>
+                <RadioButton Content="Member List" Height="50" Foreground="#F7FFF7" FontSize="14" 
+                             Style="{StaticResource MenuButtonTheme}"  Command="{Binding MemberListViewCommand}"/>
+                <RadioButton Content="Loan List" Height="50" Foreground="#F7FFF7" FontSize="14" 
+                             Style="{StaticResource MenuButtonTheme}"  Command="{Binding LoanListViewCommand}"/>
             </StackPanel>
 
             <TextBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5" 
                      FontSize="15" Style="{StaticResource TextBoxStyle}"/>
 
-            <Grid Grid.Column="1" Grid.Row="2" Margin="50,0,50,50">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="47*"/>
-                    <RowDefinition Height="358*"/>
-                </Grid.RowDefinitions>
-                
-                <ContentControl x:Name="ContentControl" Grid.Column="1" Grid.Row="1" Margin="10" />
-            </Grid>
+            <ContentControl x:Name="ContentControl" Content="{Binding CurrentView}" Grid.Column="1" Grid.Row="1" Margin="50" />
 
 
 

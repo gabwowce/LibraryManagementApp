@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagementApp.ViewModels
 {
-    public class BookListViewModel
+    public class LoanListViewModel
     {
     }
 }

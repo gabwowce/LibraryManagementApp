@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace LibraryManagementApp.ViewModels
 {
@@ -13,7 +14,12 @@ namespace LibraryManagementApp.ViewModels
     {
         public ObservableCollection<Book> Books { get; set; }
 
-        public HomeViewModel()
+        public ICommand HomeViewCommand { get; }
+        public ICommand BookListViewCommand { get; }
+        public ICommand MemberListViewCommand { get; }
+        public ICommand LoanListViewCommand { get; }
+
+        public HomeViewModel(MainViewModel mainViewModel)
         {
             Books = new ObservableCollection<Book>
         {
@@ -23,6 +29,11 @@ namespace LibraryManagementApp.ViewModels
             new Book { Title = "Piglet", Author = "by Lottie Hazell", ImageSource = "Images/Book4.jpg" },
             new Book { Title = "Help Wanted", Author = "by Adelle Waldman", ImageSource = "Images/Book5.jpg" },
         };
+
+            HomeViewCommand = mainViewModel.HomeViewCommand;
+            BookListViewCommand = mainViewModel.BookListViewCommand;
+            MemberListViewCommand = mainViewModel.MemberListViewCommand;
+            LoanListViewCommand = mainViewModel.LoanListViewCommand;
         }
     }
 }

@@ -10,7 +10,6 @@ namespace LibraryManagementApp.ViewModels
 {
     public class MainViewModel : ObservableObject
     {
-        private readonly INavigationService _navigationService;
 
         private object _currentView;
         public object CurrentView
@@ -25,14 +24,39 @@ namespace LibraryManagementApp.ViewModels
 
         public ICommand HomeViewCommand { get; }
         public ICommand BookListViewCommand { get; }
+        public ICommand MemberListViewCommand { get; }
+        public ICommand LoanListViewCommand { get; }
+        public HomeViewModel HomeVM { get; set; }
+        public BookListViewModel BookListVM { get; set; }
+        public MemberListViewModel MemberListVM { get; set; }
+        public LoanListViewModel LoanListVM { get; set; }
 
-        public MainViewModel(INavigationService navigationService)
+
+        public MainViewModel()
         {
-            _navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
-            HomeViewCommand = new RelayCommand(_ => _navigationService.NavigateTo("HomeView"));
-            BookListViewCommand = new RelayCommand(_ => _navigationService.NavigateTo("BookListView"));
+            HomeVM = new HomeViewModel(this);
+            BookListVM = new BookListViewModel();
+            CurrentView = HomeVM;
 
-            CurrentView = new HomeViewModel();
+
+            HomeViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = HomeVM;
+            });
+
+            BookListViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = BookListVM;
+            });
+            MemberListViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = MemberListVM;
+            });
+
+            LoanListViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = LoanListVM;
+            });
         }
 
     }
