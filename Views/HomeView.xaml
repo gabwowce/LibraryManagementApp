@@ -14,7 +14,7 @@
         <TextBlock Text="Hi, User!" Foreground="#F7FFF7" FontSize="40" HorizontalAlignment="Left" Margin="0,0,0,10"/>
 
         <StackPanel Orientation="Horizontal">
-            <Border Width="700" Height="415" CornerRadius="10" Margin="2,0,0,0">
+            <Border Width="700" Height="415" CornerRadius="10">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                         <GradientStop Color="#79B3CE" Offset="0.0"/>

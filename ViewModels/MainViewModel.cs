@@ -67,7 +67,7 @@ namespace LibraryManagementApp.ViewModels
             BookListViewCommand = new RelayCommand(o =>
             {
                 CurrentView = BookListVM;
-                Debug.WriteLine("----------------------->BookViewCommand Executed<------------------------");
+                
             });
             MemberListViewCommand = new RelayCommand(o =>
             {
