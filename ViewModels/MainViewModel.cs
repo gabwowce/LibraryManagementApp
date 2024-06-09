@@ -20,7 +20,20 @@ namespace LibraryManagementApp.ViewModels
             {
                 _currentView = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(SelectedView));
+                UpdateExpanderState();
+            }
+        }
+
+        private bool _isBookListExpanded;
+        public bool IsBookListExpanded
+        {
+            get { return _isBookListExpanded; }
+            set
+            {
+                _isBookListExpanded = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(BookListHeader));
+
             }
         }
         public string SelectedView
@@ -29,7 +42,7 @@ namespace LibraryManagementApp.ViewModels
             {
                 if (CurrentView == HomeVM)
                     return "Home";
-                if (CurrentView == BookListVM)
+                if (CurrentView == AllBooksVM)
                     return "BookList";
                 if (CurrentView == MemberListVM)
                     return "MemberList";
@@ -38,47 +51,82 @@ namespace LibraryManagementApp.ViewModels
                 return string.Empty;
             }
         }
+        public string BookListHeader => IsBookListExpanded ? "▼ Book List" : "▶ Book List";
 
         public ICommand HomeViewCommand { get; }
-        public ICommand BookListViewCommand { get; }
         public ICommand MemberListViewCommand { get; }
         public ICommand LoanListViewCommand { get; }
+
+        public ICommand SetCategoryCommand { get; }
+
+        /*      public ICommand AllBooksViewCommand { get; }
+              public ICommand ChildrenBooksViewCommand { get; }
+              public ICommand FantasyBooksViewCommand { get; }
+              public ICommand BiographyBooksViewCommand { get; }
+              public ICommand HistoryBooksViewCommand { get; }
+              public ICommand MisteryBooksViewCommand { get; }
+              public ICommand RomanceBooksViewCommand { get; }
+      */
+
+
         public HomeViewModel HomeVM { get; set; }
-        public BookListViewModel BookListVM { get; set; }
         public MemberListViewModel MemberListVM { get; set; }
         public LoanListViewModel LoanListVM { get; set; }
+        public AllBooksViewModel AllBooksVM { get; set; }
 
 
         public MainViewModel()
         {
             HomeVM = new HomeViewModel(this);
-            BookListVM = new BookListViewModel();
             MemberListVM = new MemberListViewModel();
             LoanListVM = new LoanListViewModel();
+            AllBooksVM = new AllBooksViewModel(this);
 
             CurrentView = HomeVM;
 
 
             HomeViewCommand = new RelayCommand(o =>
             {
-                CurrentView = HomeVM;
-            });
-
-            BookListViewCommand = new RelayCommand(o =>
-            {
-                CurrentView = BookListVM;
                 
+                CurrentView = HomeVM;
             });
             MemberListViewCommand = new RelayCommand(o =>
             {
+                
                 CurrentView = MemberListVM;
             });
 
             LoanListViewCommand = new RelayCommand(o =>
             {
+                
                 CurrentView = LoanListVM;
+
             });
+
+            SetCategoryCommand = new RelayCommand(o =>
+            {
+                SetBooksCategory(o as string);
+
+            });
+
+
         }
+
+        private void SetBooksCategory(string category)
+        {
+            if (!string.IsNullOrEmpty(category))
+            {
+                AllBooksVM.Category = category;
+                CurrentView = AllBooksVM;
+                IsBookListExpanded = true;
+            }
+        }
+
+        private void UpdateExpanderState()
+        {
+            IsBookListExpanded = CurrentView == AllBooksVM;
+        }
+
 
     }
 }

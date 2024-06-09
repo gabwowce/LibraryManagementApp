@@ -9,54 +9,6 @@
     
     
     
-    <StackPanel>
-        <Border Width="1090" Height="60" CornerRadius="10" Background="#F7FFF7" Padding="12.5">
-            <WrapPanel>
-
-                <Border Style="{StaticResource CustomBorderStyle}" Margin="0,0,12.5,0">
-                    <TextBlock Text="New Books" Foreground="#F7FFF7" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-
-                <Border Style="{StaticResource CustomBorderStyle}" Margin="0,0,12.5,0">
-                    <TextBlock Text="Other Content" Foreground="#F7FFF7" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-
-                <Border Style="{StaticResource CustomBorderStyle}" Margin="0,0,12.5,0">
-                    <TextBlock Text="Other Content" Foreground="#F7FFF7" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-
-                <Border Style="{StaticResource CustomBorderStyle}" Margin="0,0,12.5,0">
-                    <TextBlock Text="Other Content" Foreground="#F7FFF7" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-
-                <Border Style="{StaticResource CustomBorderStyle}" Margin="0,0,0,0">
-                    <TextBlock Text="Other Content" Foreground="#F7FFF7" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-
-                <Border Style="{StaticResource CustomBorderStyle}" Margin="0,12.5,12.5,0">
-                    <TextBlock Text="Other Content" Foreground="#F7FFF7" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-
-                <Border Style="{StaticResource CustomBorderStyle}" Margin="0,12.5,12.5,0">
-                    <TextBlock Text="Other Content" Foreground="#F7FFF7" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Border>
-                
-            </WrapPanel>
-        </Border>
-
-        <Border Width="1090" Height="60" CornerRadius="10" Background="#F7FFF7" Padding="12.5" Margin="0,25,0,0">
-            <StackPanel>
-                <TextBlock Text="Filters:" FontSize="18" FontWeight="DemiBold"/>
-                <StackPanel Orientation="Horizontal">
-                    
-                </StackPanel>
-            </StackPanel>
-        </Border>
-
-        <Border Width="1090" Height="640" CornerRadius="10" Background="#F7FFF7" Padding="12.5" Margin="0,25,0,0">
-            <TextBlock Text="1-30 from 340" FontWeight="DemiBold"/>
-        </Border>
-
-    </StackPanel>
+    
     
 </UserControl>

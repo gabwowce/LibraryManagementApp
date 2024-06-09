@@ -15,9 +15,9 @@ namespace LibraryManagementApp.ViewModels
         public ObservableCollection<Book> Books { get; set; }
 
         public ICommand HomeViewCommand { get; }
-        public ICommand BookListViewCommand { get; }
         public ICommand MemberListViewCommand { get; }
         public ICommand LoanListViewCommand { get; }
+        public ICommand AllBooksViewCommand { get; }
 
         private MainViewModel _mainViewModel;
 
@@ -34,7 +34,7 @@ namespace LibraryManagementApp.ViewModels
             new Book { Title = "Help Wanted", Author = "by Adelle Waldman", ImageSource = "Images/Book5.jpg" },
         };
 
-            BookListViewCommand = new RelayCommand(o => _mainViewModel.CurrentView = _mainViewModel.BookListVM);
+            AllBooksViewCommand = new RelayCommand(o => _mainViewModel.CurrentView = _mainViewModel.AllBooksVM);
             MemberListViewCommand = new RelayCommand(o => _mainViewModel.CurrentView = _mainViewModel.MemberListVM);
             LoanListViewCommand = new RelayCommand(o => _mainViewModel.CurrentView = _mainViewModel.LoanListVM);
         }

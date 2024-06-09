@@ -19,9 +19,38 @@ namespace LibraryManagementApp
 
     public partial class MainWindow : Window
     {
+        private bool _isUserAction;
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        private void Expander_Expanded(object sender, RoutedEventArgs e)
+        {
+            _isUserAction = true;
+            var expander = sender as Expander;
+            if (expander != null && expander.IsExpanded)
+            {
+                var viewModel = DataContext as ViewModels.MainViewModel;
+                if (viewModel != null)
+                {
+                    viewModel.IsBookListExpanded = true;
+                }
+            }
+            _isUserAction = false;
+        }
+
+        private void Expander_Collapsed(object sender, RoutedEventArgs e)
+        {
+            if (_isUserAction)
+            {
+                var expander = sender as Expander;
+                if (expander != null)
+                {
+                    expander.IsExpanded = true;
+                }
+            }
+        }
+
     }
 }
