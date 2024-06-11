@@ -217,6 +217,53 @@
 
 
 
+    <Style x:Key="ReserveButtonStyle" TargetType="Button">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="DemiBold"/>
+        <Setter Property="Foreground" Value="#F7FFF7"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                    <GradientStop Color="#79B3CE" Offset="0.0"/>
+                    <GradientStop Color="#5B94AE" Offset="1"/>
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#5B94AE"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="#3C687A"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="#C5D8E1"/>
+                <Setter Property="Foreground" Value="#F7FFF7"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+
+
+
+
+
+
+
+
     <DataTemplate x:Key="BookTemplate">
         <Border Width="230" Height="300" Background="#F7FFF7" CornerRadius="10" Margin="10">
             
@@ -246,7 +293,7 @@
                     </Border>
                     
                     <TextBlock Text="{Binding Author}" Foreground="#343434" FontSize="11" HorizontalAlignment="Center"/>
-                    <Button Content="Reserve" x:Name="ReserveButton" Visibility="Collapsed" Margin="0,20,0,0"/>
+                    <Button Content="Reserve" x:Name="ReserveButton" Visibility="Collapsed" Margin="0,20,0,0" Style="{StaticResource ReserveButtonStyle}" Height="25"/>
                 </StackPanel>
             </Grid>
             
@@ -283,8 +330,7 @@
 
 
 
-   
-
+  
 
 
 </ResourceDictionary>
