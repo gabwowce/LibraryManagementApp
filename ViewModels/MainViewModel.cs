@@ -59,15 +59,6 @@ namespace LibraryManagementApp.ViewModels
 
         public ICommand SetCategoryCommand { get; }
 
-        /*      public ICommand AllBooksViewCommand { get; }
-              public ICommand ChildrenBooksViewCommand { get; }
-              public ICommand FantasyBooksViewCommand { get; }
-              public ICommand BiographyBooksViewCommand { get; }
-              public ICommand HistoryBooksViewCommand { get; }
-              public ICommand MisteryBooksViewCommand { get; }
-              public ICommand RomanceBooksViewCommand { get; }
-      */
-
 
         public HomeViewModel HomeVM { get; set; }
         public MemberListViewModel MemberListVM { get; set; }
@@ -87,7 +78,6 @@ namespace LibraryManagementApp.ViewModels
 
             HomeViewCommand = new RelayCommand(o =>
             {
-                
                 CurrentView = HomeVM;
             });
             MemberListViewCommand = new RelayCommand(o =>

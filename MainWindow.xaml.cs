@@ -50,6 +50,19 @@ namespace LibraryManagementApp
                     expander.IsExpanded = true;
                 }
             }
+
+            var parent = (sender as Expander)?.Content as StackPanel;
+
+            if (parent != null)
+            {
+                foreach (var child in parent.Children)
+                {
+                    if (child is RadioButton radioButton && radioButton.Tag?.ToString() == "BookCategory")
+                    {
+                        radioButton.IsChecked = false;
+                    }
+                }
+            }
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

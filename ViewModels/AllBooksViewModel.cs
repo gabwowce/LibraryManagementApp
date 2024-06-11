@@ -24,7 +24,7 @@ namespace LibraryManagementApp.ViewModels
             {
                 if (_category != value)
                 {
-                    _category = value;
+                    _category = value; 
                     OnPropertyChanged();
                     _ = LoadBooksByCategoryAsync();
                 }
@@ -49,7 +49,6 @@ namespace LibraryManagementApp.ViewModels
         {
             _mainViewModel = mainViewModel ?? throw new ArgumentNullException(nameof(mainViewModel));
             repository = new BookRepository();
-            Category = "All";
             
             _ = InitializeAsync();
 
@@ -69,8 +68,8 @@ namespace LibraryManagementApp.ViewModels
             {
                 var books = await repository.GetBooksByCategoryAsync(Category);
                 Books = new ObservableCollection<Book>(books);
+                
 
-                Debug.WriteLine($"Loaded {books.Count} books.");
             }
             catch (Exception ex)
             {

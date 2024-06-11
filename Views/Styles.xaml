@@ -219,6 +219,7 @@
 
     <DataTemplate x:Key="BookTemplate">
         <Border Width="230" Height="300" Background="#F7FFF7" CornerRadius="10" Margin="10">
+            
             <Border.Style>
                 <Style TargetType="Border">
                     <Style.Triggers>
@@ -232,35 +233,51 @@
                     </Style.Triggers>
                 </Style>
             </Border.Style>
-            <Grid Margin="30">
+            
+            <Grid Margin="20">
                 <StackPanel>
                     <Image x:Name="ImageElement" Source="{Binding ImageSource}" Height="150" RenderTransformOrigin="0.5,0.5">
                         <Image.RenderTransform>
                             <ScaleTransform x:Name="ImageScaleTransform" ScaleX="1" ScaleY="1"/>
                         </Image.RenderTransform>
                     </Image>
-                    <TextBlock Text="{Binding Title}" Foreground="#343434" FontSize="18" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" FontWeight="Bold" Margin="0,20,0,0"/>
+                    <Border Height="50">
+                        <TextBlock Text="{Binding Title}" Foreground="#343434" FontSize="18" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" FontWeight="Bold" Margin="0,20,0,0"/>
+                    </Border>
+                    
                     <TextBlock Text="{Binding Author}" Foreground="#343434" FontSize="11" HorizontalAlignment="Center"/>
+                    <Button Content="Reserve" x:Name="ReserveButton" Visibility="Collapsed" Margin="0,20,0,0"/>
                 </StackPanel>
             </Grid>
+            
             <Border.Triggers>
+
                 <EventTrigger RoutedEvent="MouseEnter">
                     <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetName="ImageScaleTransform" Storyboard.TargetProperty="ScaleX" To="1.06" Duration="0:0:0.2"/>
                             <DoubleAnimation Storyboard.TargetName="ImageScaleTransform" Storyboard.TargetProperty="ScaleY" To="1.06" Duration="0:0:0.2"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReserveButton" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}"/>
+                            </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
+
                 <EventTrigger RoutedEvent="MouseLeave">
                     <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetName="ImageScaleTransform" Storyboard.TargetProperty="ScaleX" To="1" Duration="0:0:0.2"/>
                             <DoubleAnimation Storyboard.TargetName="ImageScaleTransform" Storyboard.TargetProperty="ScaleY" To="1" Duration="0:0:0.2"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReserveButton" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}"/>
+                            </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
+
             </Border.Triggers>
+            
         </Border>
     </DataTemplate>
 

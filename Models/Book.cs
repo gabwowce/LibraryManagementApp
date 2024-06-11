@@ -15,5 +15,6 @@ namespace LibraryManagementApp.Models
         public int YearOfRelease { get; set; }
         public int CategoryID { get; set; }
         public string ImageSource { get; set; }
+        
     }
 }

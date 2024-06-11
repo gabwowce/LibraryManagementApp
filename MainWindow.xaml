@@ -53,25 +53,25 @@
                 <Expander Header="{Binding BookListHeader}" Foreground="#F7FFF7" Tag="BookListExpander" FontSize="14" Style="{StaticResource MenuExpanderTheme}"
                      IsExpanded="{Binding IsBookListExpanded, Mode=TwoWay}" Expanded="Expander_Expanded" Collapsed="Expander_Collapsed">
                     <StackPanel>
-                        <RadioButton Content="All" Style="{StaticResource ExpanderMenuButtonTheme}"
+                        <RadioButton Content="All" Style="{StaticResource ExpanderMenuButtonTheme}" Tag="BookCategory"
                                      IsChecked="{Binding Category, Converter={StaticResource BooleanConverter}, ConverterParameter='All'}"
                                      Command="{Binding SetCategoryCommand}" CommandParameter="All"/>
-                        <RadioButton Content="Children" Style="{StaticResource ExpanderMenuButtonTheme}"
+                        <RadioButton Content="Children" Style="{StaticResource ExpanderMenuButtonTheme}" Tag="BookCategory"
                                      IsChecked="{Binding Category, Converter={StaticResource BooleanConverter}, ConverterParameter='1'}"
                                      Command="{Binding SetCategoryCommand}" CommandParameter="1"/>
-                        <RadioButton Content="Fantasy" Style="{StaticResource ExpanderMenuButtonTheme}"
+                        <RadioButton Content="Fantasy" Style="{StaticResource ExpanderMenuButtonTheme}" Tag="BookCategory"
                                      IsChecked="{Binding Category, Converter={StaticResource BooleanConverter}, ConverterParameter='2'}"
                                      Command="{Binding SetCategoryCommand}" CommandParameter="2"/>
-                        <RadioButton Content="Biography" Style="{StaticResource ExpanderMenuButtonTheme}"
+                        <RadioButton Content="Biography" Style="{StaticResource ExpanderMenuButtonTheme}" Tag="BookCategory" 
                                      IsChecked="{Binding Category, Converter={StaticResource BooleanConverter}, ConverterParameter='3'}"
                                      Command="{Binding SetCategoryCommand}" CommandParameter="3"/>
-                        <RadioButton Content="History" Style="{StaticResource ExpanderMenuButtonTheme}"
+                        <RadioButton Content="History" Style="{StaticResource ExpanderMenuButtonTheme}" Tag="BookCategory" 
                                      IsChecked="{Binding Category, Converter={StaticResource BooleanConverter}, ConverterParameter='4'}"
                                      Command="{Binding SetCategoryCommand}" CommandParameter="4"/>
-                        <RadioButton Content="Mystery" Style="{StaticResource ExpanderMenuButtonTheme}"
+                        <RadioButton Content="Mystery" Style="{StaticResource ExpanderMenuButtonTheme}" Tag="BookCategory"
                                      IsChecked="{Binding Category, Converter={StaticResource BooleanConverter}, ConverterParameter='5'}"
                                      Command="{Binding SetCategoryCommand}" CommandParameter="5"/>
-                        <RadioButton Content="Romance" Style="{StaticResource ExpanderMenuButtonTheme}"
+                        <RadioButton Content="Romance" Style="{StaticResource ExpanderMenuButtonTheme}" Tag="BookCategory"
                                      IsChecked="{Binding Category, Converter={StaticResource BooleanConverter}, ConverterParameter='6'}"
                                      Command="{Binding SetCategoryCommand}" CommandParameter="6"/>
                     </StackPanel>
