@@ -3,6 +3,7 @@ using LibraryManagementApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,10 +65,19 @@ namespace LibraryManagementApp.ViewModels
 
         public async Task LoadBooksByCategoryAsync()
         {
-            var books = await repository.GetBooksByCategoryAsync(Category);
-            Books = new ObservableCollection<Book>(books);
+            try
+            {
+                var books = await repository.GetBooksByCategoryAsync(Category);
+                Books = new ObservableCollection<Book>(books);
+
+                Debug.WriteLine($"Loaded {books.Count} books.");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error loading books: {ex.Message}");
+            }
         }
 
-     
+
     }
 }

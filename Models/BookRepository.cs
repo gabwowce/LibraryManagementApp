@@ -5,47 +5,57 @@ using System.Text;
 using MySql.Data.MySqlClient;
 using System.Threading.Tasks;
 using System.Configuration;
+using System.Net;
+using System.Diagnostics;
 
 namespace LibraryManagementApp.Models
 {
     public class BookRepository
     {
-        private readonly string connectionString = "your_connection_string_here";
+        private readonly string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionToDB"].ConnectionString;
 
         public async Task<List<Book>> GetBooksByCategoryAsync(string category)
         {
             List<Book> books = new List<Book>();
-            using (var connection = new MySqlConnection(connectionString))
+            try
             {
-                await connection.OpenAsync();
-                MySqlCommand command;
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    await connection.OpenAsync();
+                    MySqlCommand command;
 
-                if (category == "All")
-                {
-                    command = new MySqlCommand("SELECT * FROM Books", connection);
-                }
-                else
-                {
-                    command = new MySqlCommand("SELECT * FROM Books WHERE CategoryID = @CategoryID", connection);
-                    command.Parameters.AddWithValue("@CategoryID", category); // Assuming category is a valid integer in string form
-                }
-
-                using (var reader = await command.ExecuteReaderAsync())
-                {
-                    while (await reader.ReadAsync())
+                    if (category == "All")
                     {
-                        var book = new Book
+                        command = new MySqlCommand("SELECT * FROM Books", connection);
+                    }
+                    else
+                    {
+                        command = new MySqlCommand("SELECT * FROM Books WHERE CategoryID = @CategoryID", connection);
+                        command.Parameters.AddWithValue("@CategoryID", category);
+                    }
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
                         {
-                            BookID = reader.IsDBNull(reader.GetOrdinal("BookID")) ? 0 : reader.GetInt32(reader.GetOrdinal("BookID")),
-                            Title = reader.IsDBNull(reader.GetOrdinal("Name")) ? string.Empty : reader.GetString(reader.GetOrdinal("Name")),
-                            Author = reader.IsDBNull(reader.GetOrdinal("Author")) ? string.Empty : reader.GetString(reader.GetOrdinal("Author")),
-                            YearOfRelease = reader.IsDBNull(reader.GetOrdinal("YearOfRelease")) ? 0 : reader.GetInt32(reader.GetOrdinal("YearOfRelease")),
-                            CategoryID = reader.IsDBNull(reader.GetOrdinal("CategoryID")) ? 0 : reader.GetInt32(reader.GetOrdinal("CategoryID")),
-                            ImageSource = reader.IsDBNull(reader.GetOrdinal("ImagePath")) ? string.Empty : reader.GetString(reader.GetOrdinal("ImagePath")),
-                        };
-                        books.Add(book);
+                            var book = new Book
+                            {
+                                BookID = reader.IsDBNull(reader.GetOrdinal("BookID")) ? 0 : reader.GetInt32(reader.GetOrdinal("BookID")),
+                                Title = reader.IsDBNull(reader.GetOrdinal("Name")) ? string.Empty : reader.GetString(reader.GetOrdinal("Name")),
+                                Author = reader.IsDBNull(reader.GetOrdinal("Author")) ? string.Empty : reader.GetString(reader.GetOrdinal("Author")),
+                                YearOfRelease = reader.IsDBNull(reader.GetOrdinal("YearOfRelease")) ? 0 : reader.GetInt32(reader.GetOrdinal("YearOfRelease")),
+                                CategoryID = reader.IsDBNull(reader.GetOrdinal("CategoryID")) ? 0 : reader.GetInt32(reader.GetOrdinal("CategoryID")),
+                                ImageSource = reader.IsDBNull(reader.GetOrdinal("ImagePath")) ? string.Empty : reader.GetString(reader.GetOrdinal("ImagePath")),
+                            };
+
+                            books.Add(book);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error fetching books: {ex.Message}");
             }
 
             return books;

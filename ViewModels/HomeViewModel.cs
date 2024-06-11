@@ -3,6 +3,7 @@ using LibraryManagementApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace LibraryManagementApp.ViewModels
 {
     public class HomeViewModel: ObservableObject
     {
-        public ObservableCollection<Book> Books { get; set; }
+        private readonly BookRepository repository;
 
         public ICommand HomeViewCommand { get; }
         public ICommand MemberListViewCommand { get; }
@@ -21,22 +22,48 @@ namespace LibraryManagementApp.ViewModels
 
         private MainViewModel _mainViewModel;
 
+        private ObservableCollection<Book> _books;
+
+        public ObservableCollection<Book> Books
+        {
+            get => _books;
+            set
+            {
+                _books = value;
+                OnPropertyChanged();
+            }
+        }
+
         public HomeViewModel(MainViewModel mainViewModel)
         {
             _mainViewModel = mainViewModel ?? throw new ArgumentNullException(nameof(mainViewModel));
 
-            Books = new ObservableCollection<Book>
-        {
-            new Book { Title = "Come and Get It", Author = "by Kiley Reid", ImageSource = "Images/Book1.jpg" },
-            new Book { Title = "The Women", Author = "by Kristin Hannah", ImageSource = "Images/Book2.jpg" },
-            new Book { Title = "The Fury", Author = "by Alex Michaelides", ImageSource = "Images/Book3.jpg" },
-            new Book { Title = "Piglet", Author = "by Lottie Hazell", ImageSource = "Images/Book4.jpg" },
-            new Book { Title = "Help Wanted", Author = "by Adelle Waldman", ImageSource = "Images/Book5.jpg" },
-        };
+            repository = new BookRepository();
 
             AllBooksViewCommand = new RelayCommand(o => _mainViewModel.CurrentView = _mainViewModel.AllBooksVM);
             MemberListViewCommand = new RelayCommand(o => _mainViewModel.CurrentView = _mainViewModel.MemberListVM);
             LoanListViewCommand = new RelayCommand(o => _mainViewModel.CurrentView = _mainViewModel.LoanListVM);
+
+            _ = InitializeAsync();
+        }
+        private async Task InitializeAsync()
+        {
+            await LoadBooksByCategoryAsync();
+        }
+
+        public async Task LoadBooksByCategoryAsync()
+        {
+            try
+            {
+                var books = await repository.GetBooksByCategoryAsync("7");
+                Books = new ObservableCollection<Book>(books);
+
+                Debug.WriteLine($"Loaded {books.Count} books.");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error loading books: {ex.Message}");
+            }
         }
 
 

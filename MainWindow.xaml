@@ -13,7 +13,8 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         SizeToContent="WidthAndHeight"
-        WindowStyle="None">
+        WindowStyle="None"
+        MouseDown="Window_MouseDown">
     
     <Window.DataContext>
         <vm:MainViewModel/>
@@ -77,10 +78,12 @@
 
                 <RadioButton Content="Member List" Height="50" Foreground="#F7FFF7" FontSize="14"
                              Style="{StaticResource MenuButtonTheme}" 
+                             IsEnabled="False"
                              IsChecked="{Binding CurrentView, Converter={StaticResource ViewModelConverter}, ConverterParameter={x:Type vm:MemberListViewModel}}"
                              Command="{Binding MemberListViewCommand}"/>
                 <RadioButton Content="Loan List" Height="50" Foreground="#F7FFF7" FontSize="14"
                              Style="{StaticResource MenuButtonTheme}" 
+                             IsEnabled="False"
                              IsChecked="{Binding CurrentView, Converter={StaticResource ViewModelConverter}, ConverterParameter={x:Type vm:LoanListViewModel}}"
                              Command="{Binding LoanListViewCommand}"/>
             </StackPanel>
