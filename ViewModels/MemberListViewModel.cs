@@ -26,6 +26,18 @@ namespace LibraryManagementApp.ViewModels
             }
         }
 
+        private Member _selectedMember;
+        public Member SelectedMember
+        {
+            get => _selectedMember;
+            set
+            {
+                _selectedMember = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(SelectedMember));
+            }
+        }
+
 
         public MemberListViewModel()
         {
