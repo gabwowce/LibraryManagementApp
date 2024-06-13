@@ -4,9 +4,46 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LibraryManagementApp.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d">
+
     <Grid>
-            
+        <Border Width="1090" Height="810" CornerRadius="10" Padding="12.5" Margin="0">
+            <ListView Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" ItemsSource="{Binding Members}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Member ID" DisplayMemberBinding="{Binding Id}" Width="100"/>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="180" />
+                        <GridViewColumn Header="Surname" DisplayMemberBinding="{Binding Surname}" Width="180" />
+                        <GridViewColumn Header="Date of Birth" DisplayMemberBinding="{Binding DateofBirth}" Width="180" />
+                        <GridViewColumn Header="Books taken" Width="180">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding BooksTaken}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding BookID}" />
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Actions" Width="250">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <Button Content="View History" Command="{Binding DataContext.ViewHistoryCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding Id}" Margin="5"/>
+                                        <Button Content="Reserve Book" Command="{Binding DataContext.ReserveBookCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding Id}" Margin="5"/>
+                                        <Button Content="Loan Book" Command="{Binding DataContext.LoanBookCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding Id}" Margin="5"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Border>
     </Grid>
+
+
 </UserControl>

@@ -115,6 +115,10 @@
     <Compile Include="Helpers\ViewModelConverter.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\BookRepository.cs" />
+    <Compile Include="Models\LoanRepository.cs" />
+    <Compile Include="Models\Loans.cs" />
+    <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\MemberRepository.cs" />
     <Compile Include="ViewModels\AllBooksViewModel.cs" />
     <Compile Include="ViewModels\BookListViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />

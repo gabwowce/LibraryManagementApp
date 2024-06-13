@@ -58,7 +58,6 @@ namespace LibraryManagementApp.ViewModels
                 var books = await repository.GetBooksByCategoryAsync("7");
                 Books = new ObservableCollection<Book>(books);
 
-                Debug.WriteLine($"Loaded {books.Count} books.");
             }
             catch (Exception ex)
             {
