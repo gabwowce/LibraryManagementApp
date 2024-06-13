@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryManagementApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,23 @@ namespace LibraryManagementApp.Views
     /// </summary>
     public partial class LendBookWindow : Window
     {
-        public LendBookWindow()
+        public LendBookWindow(int memberId)
         {
             InitializeComponent();
+            DataContext = new LendBookViewModel(memberId);
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

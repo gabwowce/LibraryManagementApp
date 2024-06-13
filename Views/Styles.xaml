@@ -363,6 +363,7 @@
                 <TextBlock Grid.Column="3" Text="{Binding DateofBirth, StringFormat='yyyy-MM-dd'}" Margin="14" FontSize="16"/>
                 <Button Grid.Column="4" Content="Lend" x:Name="LoanBookButt" Visibility="Collapsed" Style="{StaticResource ReserveButtonStyle}" 
                         Command="{Binding DataContext.OpenLendBookWindowCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                        CommandParameter="{Binding Id}"
                         Height="30" Width="100" Margin="0,0,-40,0" HorizontalAlignment="Center"/>
                 <Button Grid.Column="4" Content="View History" x:Name="ViewHistoryButt" Visibility="Collapsed" Style="{StaticResource ReserveButtonStyle}" 
                         Height="30" Width="100" Margin="0,0,14,0" HorizontalAlignment="Right"/>
@@ -475,5 +476,42 @@
 
         </Border>
     </DataTemplate>
+
+
+    <Style x:Key="ImageButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="contentPresenter"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.7" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="contentPresenter"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.5" Duration="0:0:0.1"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </ResourceDictionary>

@@ -72,8 +72,11 @@ namespace LibraryManagementApp.ViewModels
 
         private void OpenLendBookWindow(object parameter)
         {
-            var lendBookWindow = new LendBookWindow();
-            lendBookWindow.ShowDialog();
+            if (parameter is int memberId)
+            {
+                var lendBookWindow = new LendBookWindow(memberId);
+                lendBookWindow.ShowDialog();
+            }
         }
 
 
