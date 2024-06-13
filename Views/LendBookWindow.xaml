@@ -1,0 +1,65 @@
+﻿<Window x:Class="LibraryManagementApp.Views.LendBookWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Lend Book" Height="300" Width="400"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="WidthAndHeight"
+        WindowStyle="None">
+
+
+
+    <Border Background="#343434" CornerRadius="40">
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+           
+
+            <Button Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,20,0" Width="20" 
+                Background="Transparent" BorderThickness="0" Command="{Binding CloseCommand}">
+                <Image Source="Images\Close.png"/>
+            </Button>
+
+            <Grid Grid.Row="1" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center">Member ID:</TextBlock>
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding MemberID}"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center">Book ID:</TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding BookID}"/>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center">Loan Date:</TextBlock>
+                <DatePicker Grid.Row="2" Grid.Column="1" Margin="5" SelectedDate="{Binding LoanDate}"/>
+
+                <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+                    <Button Content="Lend" Margin="5" Style="{StaticResource ReserveButtonStyle}" Width="100"/>
+                    <Button Content="Cancel" Margin="5" Style="{StaticResource ReserveButtonStyle}" Width="100"/>
+                </StackPanel>
+            </Grid>
+
+            
+
+
+        </Grid>
+
+    </Border>
+
+
+
+
+    
+</Window>

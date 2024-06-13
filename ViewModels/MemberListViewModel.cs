@@ -1,5 +1,6 @@
 ﻿using LibraryManagementApp.Helpers;
 using LibraryManagementApp.Models;
+using LibraryManagementApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,6 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace LibraryManagementApp.ViewModels
 {
@@ -15,6 +17,7 @@ namespace LibraryManagementApp.ViewModels
         private readonly MemberRepository repository;
 
         private ObservableCollection<Member> _members;
+        public ICommand OpenLendBookWindowCommand { get; }
 
         public ObservableCollection<Member> Members
         {
@@ -42,6 +45,7 @@ namespace LibraryManagementApp.ViewModels
         public MemberListViewModel()
         {
             repository = new MemberRepository();
+            OpenLendBookWindowCommand = new RelayCommand(OpenLendBookWindow);
             _ = InitializeAsync();
         }
 
@@ -63,6 +67,13 @@ namespace LibraryManagementApp.ViewModels
             {
                 Debug.WriteLine($"Error loading books: {ex.Message}");
             }
+        }
+
+
+        private void OpenLendBookWindow(object parameter)
+        {
+            var lendBookWindow = new LendBookWindow();
+            lendBookWindow.ShowDialog();
         }
 
 

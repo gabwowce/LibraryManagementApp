@@ -361,8 +361,11 @@
                 <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="14" FontSize="16"/>
                 <TextBlock Grid.Column="2" Text="{Binding Surname}" Margin="14" FontSize="16"/>
                 <TextBlock Grid.Column="3" Text="{Binding DateofBirth, StringFormat='yyyy-MM-dd'}" Margin="14" FontSize="16"/>
-                <Button Grid.Column="4" Content="Lend" x:Name="LoanBookButt" Visibility="Collapsed" Style="{StaticResource ReserveButtonStyle}" Height="30" Width="100" Margin="0,0,-40,0" HorizontalAlignment="Center"/>
-                <Button Grid.Column="4" Content="View History" x:Name="ViewHistoryButt" Visibility="Collapsed" Style="{StaticResource ReserveButtonStyle}" Height="30" Width="100" Margin="0,0,14,0" HorizontalAlignment="Right"/>
+                <Button Grid.Column="4" Content="Lend" x:Name="LoanBookButt" Visibility="Collapsed" Style="{StaticResource ReserveButtonStyle}" 
+                        Command="{Binding DataContext.OpenLendBookWindowCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                        Height="30" Width="100" Margin="0,0,-40,0" HorizontalAlignment="Center"/>
+                <Button Grid.Column="4" Content="View History" x:Name="ViewHistoryButt" Visibility="Collapsed" Style="{StaticResource ReserveButtonStyle}" 
+                        Height="30" Width="100" Margin="0,0,14,0" HorizontalAlignment="Right"/>
             </Grid>
 
             <Border.Triggers>
