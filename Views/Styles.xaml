@@ -294,7 +294,7 @@
                     </Border>
                     
                     <TextBlock Text="{Binding Author}" Foreground="#343434" FontSize="11" HorizontalAlignment="Center"/>
-                    <Button Content="Reserve" x:Name="ReserveButton" Visibility="Collapsed" Margin="0,20,0,0" Style="{StaticResource ReserveButtonStyle}" Height="25"/>
+                    <Button Content="Lend" x:Name="ReserveButton" Visibility="Collapsed" Margin="0,20,0,0" Style="{StaticResource ReserveButtonStyle}" Height="25"/>
                 </StackPanel>
             </Grid>
             
@@ -333,7 +333,7 @@
 
 
     <DataTemplate x:Key="MemberTemplate">
-        <Border Width="800" Height="50" Background="#F7FFF7" CornerRadius="10" BorderThickness="2" BorderBrush="Black">
+        <Border Width="1040" Height="50" Background="#F7FFF7" CornerRadius="10" BorderThickness="1" BorderBrush="#343434" Margin="0,00,0,10">
 
             <Border.Style>
                 <Style TargetType="Border">
@@ -341,7 +341,7 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Effect">
                                 <Setter.Value>
-                                    <DropShadowEffect Color="#2F3061" Direction="320" ShadowDepth="20" BlurRadius="40" />
+                                    <DropShadowEffect Color="#343434" Direction="320" ShadowDepth="4" BlurRadius="40" />
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
@@ -350,14 +350,19 @@
             </Border.Style>
 
             <Grid >
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding Id}" Margin="10" FontSize="15"/>
-                    <TextBlock Text="{Binding Name}" Margin="10" FontSize="15"/>
-                    <TextBlock Text="{Binding Surname}" Margin="10" FontSize="15"/>
-                    <TextBlock Text="{Binding DateofBirth, StringFormat='yyyy-MM-dd'}" Margin="10" FontSize="15"/>
-
-                    <Button Content="View History" x:Name="ReserveButton" Visibility="Collapsed" Style="{StaticResource ReserveButtonStyle}" Height="25"/>
-                </StackPanel>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding Id}" Margin="14" FontSize="16"/>
+                <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="14" FontSize="16"/>
+                <TextBlock Grid.Column="2" Text="{Binding Surname}" Margin="14" FontSize="16"/>
+                <TextBlock Grid.Column="3" Text="{Binding DateofBirth, StringFormat='yyyy-MM-dd'}" Margin="14" FontSize="16"/>
+                <Button Grid.Column="4" Content="Lend" x:Name="LoanBookButt" Visibility="Collapsed" Style="{StaticResource ReserveButtonStyle}" Height="30" Width="100" Margin="0,0,-40,0" HorizontalAlignment="Center"/>
+                <Button Grid.Column="4" Content="View History" x:Name="ViewHistoryButt" Visibility="Collapsed" Style="{StaticResource ReserveButtonStyle}" Height="30" Width="100" Margin="0,0,14,0" HorizontalAlignment="Right"/>
             </Grid>
 
             <Border.Triggers>
@@ -365,8 +370,12 @@
                 <EventTrigger RoutedEvent="MouseEnter">
                     <BeginStoryboard>
                         <Storyboard>
-                            
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReserveButton" Storyboard.TargetProperty="Visibility">
+
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LoanBookButt" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}"/>
+                            </ObjectAnimationUsingKeyFrames>
+
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ViewHistoryButt" Storyboard.TargetProperty="Visibility">
                                 <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
@@ -376,8 +385,12 @@
                 <EventTrigger RoutedEvent="MouseLeave">
                     <BeginStoryboard>
                         <Storyboard>
-                           
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ReserveButton" Storyboard.TargetProperty="Visibility">
+
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LoanBookButt" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}"/>
+                            </ObjectAnimationUsingKeyFrames>
+
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ViewHistoryButt" Storyboard.TargetProperty="Visibility">
                                 <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}"/>
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
@@ -389,5 +402,75 @@
         </Border>
     </DataTemplate>
 
+
+
+
+
+    <DataTemplate x:Key="LoansTemplate">
+        <Border Width="1040" Height="50" Background="#F7FFF7" CornerRadius="10" BorderThickness="1" BorderBrush="#343434" Margin="0,00,0,10">
+
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="#343434" Direction="320" ShadowDepth="4" BlurRadius="40" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding LoanID}" Margin="14" FontSize="16"/>
+                <TextBlock Grid.Column="1" Text="{Binding MemberID}" Margin="14" FontSize="16"/>
+                <TextBlock Grid.Column="2" Text="{Binding BookID}" Margin="14" FontSize="16"/>
+                <TextBlock Grid.Column="3" Text="{Binding DateofLoan, StringFormat='yyyy-MM-dd'}" Margin="14" FontSize="16"/>
+                <TextBlock Grid.Column="4" Text="{Binding EndDate, StringFormat='yyyy-MM-dd'}" Margin="14" FontSize="16"/>
+                <TextBlock Grid.Column="5" Text="{Binding Status}" Margin="14" FontSize="16"/>
+                <Button Grid.Column="6" Content="View Details" x:Name="ViewDetailsButt" Visibility="Collapsed" Style="{StaticResource ReserveButtonStyle}" Height="30" Width="100" HorizontalAlignment="Right" Margin="0,0,14,0"/>
+            </Grid>
+
+            <Border.Triggers>
+
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ViewDetailsButt" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Visible}"/>
+                            </ObjectAnimationUsingKeyFrames>
+
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ViewDetailsButt" Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}"/>
+                            </ObjectAnimationUsingKeyFrames>
+                            
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+            </Border.Triggers>
+
+        </Border>
+    </DataTemplate>
 
 </ResourceDictionary>

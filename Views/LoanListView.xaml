@@ -4,32 +4,42 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LibraryManagementApp.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d">
     <Grid>
-        <Border Width="1090" Height="810" CornerRadius="10" Padding="12.5" Margin="0">
-            <ListView Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" ItemsSource="{Binding Loans}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Loan ID" DisplayMemberBinding="{Binding LoanID}" Width="100"/>
-                        <GridViewColumn Header="Member ID" DisplayMemberBinding="{Binding MemberID}" Width="180" />
-                        <GridViewColumn Header="Book ID" DisplayMemberBinding="{Binding BookID}" Width="180" />
-                        <GridViewColumn Header="Date of Loan" DisplayMemberBinding="{Binding DateofLoan}" Width="180" />
-                       
-                        <GridViewColumn Header="Actions" Width="250">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <Button Content="View History" Command="{Binding DataContext.ViewHistoryCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding Id}" Margin="5"/>
-                                        <Button Content="Reserve Book" Command="{Binding DataContext.ReserveBookCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding Id}" Margin="5"/>
-                                        <Button Content="Loan Book" Command="{Binding DataContext.LoanBookCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding Id}" Margin="5"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+        <Border Width="1090" Height="810" CornerRadius="10">
+            <StackPanel>
+                <Border Width="1040" Height="21" Background="#343434" Margin="0,0,20,10"
+                      BorderBrush="#343434">
+
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="LOAN ID:" Margin="8,0,0,0" FontSize="16" Foreground="#F7FFF7"/>
+                        <TextBlock Grid.Column="1"  Text="MEMBER ID:" Margin="8,0,0,0" FontSize="16" Foreground="#F7FFF7"/>
+                        <TextBlock Grid.Column="2" Text="BOOK ID:" Margin="8,0,0,0" FontSize="16" Foreground="#F7FFF7"/>
+                        <TextBlock Grid.Column="3" Text="DATE OF LOAN:" Margin="8,0,0,0" FontSize="16" Foreground="#F7FFF7"/>
+                        <TextBlock Grid.Column="4" Text="END DATE:" Margin="8,0,0,0" FontSize="16" Foreground="#F7FFF7"/>
+                        <TextBlock Grid.Column="5" Text="STATUS:" Margin="8,0,0,0" FontSize="16" Foreground="#F7FFF7"/>
+                    </Grid>
+                </Border>
+
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Margin="10,0,10,0" MaxHeight="810">
+                    <ItemsControl ItemsSource="{Binding Loans}" ItemTemplate="{StaticResource LoansTemplate}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </ScrollViewer>
+            </StackPanel>
         </Border>
     </Grid>
 </UserControl>
