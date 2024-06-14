@@ -15,15 +15,17 @@ using System.Windows.Shapes;
 
 namespace LibraryManagementApp.Views
 {
-    /// <summary>
-    /// Interaction logic for LendBookWindow.xaml
-    /// </summary>
+
     public partial class LendBookWindow : Window
     {
-        public LendBookWindow(int memberId)
+        private int? MemberID;
+        private int? BookID;
+        public LendBookWindow(int? memberId, int? bookID)
         {
             InitializeComponent();
-            DataContext = new LendBookViewModel(memberId);
+            this.MemberID = memberId;
+            this.BookID = bookID;
+            DataContext = new LendBookViewModel(this.MemberID, this.BookID);
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

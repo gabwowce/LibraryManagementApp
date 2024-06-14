@@ -1,5 +1,6 @@
 ﻿using LibraryManagementApp.Helpers;
 using LibraryManagementApp.Models;
+using LibraryManagementApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,6 +31,7 @@ namespace LibraryManagementApp.ViewModels
                 }
             }
         }
+        public ICommand OpenLendBookWindowCommand { get; }
 
         private ObservableCollection<Book> _books;
 
@@ -49,7 +51,7 @@ namespace LibraryManagementApp.ViewModels
         {
             _mainViewModel = mainViewModel ?? throw new ArgumentNullException(nameof(mainViewModel));
             repository = new BookRepository();
-            
+            OpenLendBookWindowCommand = new RelayCommand(OpenLendBookWindow);
             _ = InitializeAsync();
 
             
@@ -74,6 +76,15 @@ namespace LibraryManagementApp.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine($"Error loading books: {ex.Message}");
+            }
+        }
+
+        private void OpenLendBookWindow(object parameter)
+        {
+            if (parameter is int bookID)
+            {
+                var lendBookWindow = new LendBookWindow(null,bookID);
+                lendBookWindow.ShowDialog();
             }
         }
 

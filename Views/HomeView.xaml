@@ -84,7 +84,7 @@
 
                     <Grid>
                         <StackPanel>
-                            <TextBlock Text="1203" Foreground="#F7FFF7" FontSize="55" Margin="20,10,10,-10" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding HomeInformation.TotalBooks}" Foreground="#F7FFF7" FontSize="55" Margin="20,10,10,-10" HorizontalAlignment="Center"/>
                             <TextBlock Text="Total Books" Foreground="#F7FFF7" FontSize="20" Margin="20,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                         </StackPanel>
                     </Grid>
@@ -123,7 +123,7 @@
 
                     <Grid>
                         <StackPanel>
-                            <TextBlock Text="583" Foreground="White" FontSize="55" Margin="20,10,10,-10" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding HomeInformation.TotalMembers}" Foreground="White" FontSize="55" Margin="20,10,10,-10" HorizontalAlignment="Center"/>
                             <TextBlock Text="Total Members" Foreground="#F7FFF7" FontSize="20" Margin="20,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                         </StackPanel>
                     </Grid>
@@ -163,7 +163,7 @@
 
                     <Grid>
                         <StackPanel>
-                            <TextBlock Text="132" Foreground="#F7FFF7" FontSize="55" Margin="20,10,10,-10" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding HomeInformation.TotalBooksLoanedOut}" Foreground="#F7FFF7" FontSize="55" Margin="20,10,10,-10" HorizontalAlignment="Center"/>
                             <TextBlock Text="Books Loaned Out" Foreground="#F7FFF7" FontSize="20" Margin="20,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                         </StackPanel>
                     </Grid>

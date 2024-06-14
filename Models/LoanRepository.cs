@@ -46,10 +46,40 @@ namespace LibraryManagementApp.Models
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Error fetching loans: {ex.Message}");
+                Debug.WriteLine($"------------> Error fetching loans: {ex.Message}");
             }
 
             return loans;
+        }
+
+
+        public void UploadLoan(Loans loan)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = @"
+                                INSERT INTO loans (MemberID, BookID, DateOfLoan, EndDate, Status)
+                                VALUES (@MemberID, @BookID, @DateOfLoan, DATE_ADD(@DateOfLoan, INTERVAL 30 DAY), 'Active');";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@MemberID", loan.MemberID);
+                        cmd.Parameters.AddWithValue("@BookID", loan.BookID);
+                        cmd.Parameters.AddWithValue("@DateOfLoan", loan.DateofLoan);
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                }
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine($"------------> Error uploading loan: {ex.Message}");
+            }
+            
         }
     }
 }

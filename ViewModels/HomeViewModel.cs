@@ -33,6 +33,16 @@ namespace LibraryManagementApp.ViewModels
                 OnPropertyChanged();
             }
         }
+        private HomeViewInformation _homeInformation;
+        public HomeViewInformation HomeInformation 
+        { 
+            get => _homeInformation;
+            set
+            {
+                _homeInformation = value;
+                OnPropertyChanged();
+            } 
+        }
 
         public HomeViewModel(MainViewModel mainViewModel)
         {
@@ -49,6 +59,7 @@ namespace LibraryManagementApp.ViewModels
         private async Task InitializeAsync()
         {
             await LoadBooksByCategoryAsync();
+            await LoandHomeInformationAsync();
         }
 
         public async Task LoadBooksByCategoryAsync()
@@ -61,7 +72,21 @@ namespace LibraryManagementApp.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Error loading books: {ex.Message}");
+                Debug.WriteLine($"-------> Error loading books: {ex.Message}");
+            }
+        }
+
+        public async Task LoandHomeInformationAsync()
+        {
+            try
+            {
+                HomeViewInformationRepository infoRepository = new HomeViewInformationRepository();
+                var homeInfo = await infoRepository.GetHomeInformationAsync();
+                Debug.WriteLine($"-------> Error loading books---AllGOOD");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"-------> Error loading home information: {ex.Message}");
             }
         }
 

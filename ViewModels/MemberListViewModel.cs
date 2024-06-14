@@ -74,7 +74,7 @@ namespace LibraryManagementApp.ViewModels
         {
             if (parameter is int memberId)
             {
-                var lendBookWindow = new LendBookWindow(memberId);
+                var lendBookWindow = new LendBookWindow(memberId, null);
                 lendBookWindow.ShowDialog();
             }
         }

@@ -294,7 +294,9 @@
                     </Border>
                     
                     <TextBlock Text="{Binding Author}" Foreground="#343434" FontSize="11" HorizontalAlignment="Center"/>
-                    <Button Content="Lend" x:Name="ReserveButton" Visibility="Collapsed" Margin="0,20,0,0" Style="{StaticResource ReserveButtonStyle}" Height="25"/>
+                    <Button Content="Lend" x:Name="ReserveButton" Visibility="Collapsed" Margin="0,20,0,0" Style="{StaticResource ReserveButtonStyle}" 
+                            Command="{Binding DataContext.OpenLendBookWindowCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                            CommandParameter="{Binding BookID}" Height="25"/>
                 </StackPanel>
             </Grid>
             
