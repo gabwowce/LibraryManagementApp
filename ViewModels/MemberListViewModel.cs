@@ -81,7 +81,7 @@ namespace LibraryManagementApp.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Error loading books: {ex.Message}");
+                Debug.WriteLine($"Error loading members: {ex.Message}");
             }
         }
 

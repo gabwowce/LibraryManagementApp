@@ -447,7 +447,9 @@
                 <TextBlock Grid.Column="3" Text="{Binding DateofLoan, StringFormat='yyyy-MM-dd'}" Margin="14" FontSize="16"/>
                 <TextBlock Grid.Column="4" Text="{Binding EndDate, StringFormat='yyyy-MM-dd'}" Margin="14" FontSize="16"/>
                 <TextBlock Grid.Column="5" Text="{Binding Status}" Margin="14" FontSize="16"/>
-                <Button Grid.Column="6" Content="View Details" x:Name="ViewDetailsButt" Visibility="Collapsed" Style="{StaticResource ReserveButtonStyle}" Height="30" Width="100" HorizontalAlignment="Right" Margin="0,0,14,0"/>
+                <Button Grid.Column="6" Content="View Member Details" x:Name="ViewDetailsButt" Visibility="Collapsed" Style="{StaticResource ReserveButtonStyle}" 
+                        Command="{Binding DataContext.OpenLoanDetailsWindowCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                        CommandParameter="{Binding MemberID}" Height="30" Width="100" HorizontalAlignment="Right" Margin="0,0,14,0"/>
             </Grid>
 
             <Border.Triggers>

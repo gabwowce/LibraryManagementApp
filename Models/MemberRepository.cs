@@ -9,6 +9,7 @@ using System.Net;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace LibraryManagementApp.Models
 {
@@ -52,6 +53,39 @@ namespace LibraryManagementApp.Models
             return members;
         }
 
-       
+
+        public async Task<Member> GetMemberbyIDAsync(int memberID)
+        {
+            Member member = new Member();
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    await connection.OpenAsync();
+
+                    MySqlCommand command = new MySqlCommand("SELECT * FROM members WHERE MemberID = @MemberID", connection);
+                    command.Parameters.AddWithValue("@MemberID", memberID);
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+
+                            member.Id = reader.IsDBNull(reader.GetOrdinal("MemberID")) ? 0 : reader.GetInt32(reader.GetOrdinal("MemberID"));
+                            member.Name = reader.IsDBNull(reader.GetOrdinal("Name")) ? string.Empty : reader.GetString(reader.GetOrdinal("Name"));
+                            member.Surname = reader.IsDBNull(reader.GetOrdinal("Surname")) ? string.Empty : reader.GetString(reader.GetOrdinal("Surname"));
+                            member.DateofBirth = reader.IsDBNull(reader.GetOrdinal("DateofBirth")) ? DateTime.MinValue : reader.GetDateTime(reader.GetOrdinal("DateofBirth"));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"--------> Error fetching member by ID: {ex.Message}");
+            }
+
+            return member;
+        }
+
+
     }
 }
