@@ -121,6 +121,7 @@
     <Compile Include="Models\LoanRepository.cs" />
     <Compile Include="Models\Loans.cs" />
     <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\MemberLoansDetails.cs" />
     <Compile Include="Models\MemberRepository.cs" />
     <Compile Include="ViewModels\AllBooksViewModel.cs" />
     <Compile Include="ViewModels\BookListViewModel.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="ViewModels\LoanListViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MemberListViewModel.cs" />
+    <Compile Include="ViewModels\MemberLoanDetailskViewModel.cs" />
     <Compile Include="Views\AllBooksView.xaml.cs">
       <DependentUpon>AllBooksView.xaml</DependentUpon>
     </Compile>
@@ -141,8 +143,14 @@
     <Compile Include="Views\LendBookWindow.xaml.cs">
       <DependentUpon>LendBookWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\LoanDetailWindow.xaml.cs">
+      <DependentUpon>LoanDetailWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoanListView.xaml.cs">
       <DependentUpon>LoanListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MemberDetailsWindow.xaml.cs">
+      <DependentUpon>MemberDetailsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MemberListView.xaml.cs">
       <DependentUpon>MemberListView.xaml</DependentUpon>
@@ -177,7 +185,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\LoanDetailWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoanListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MemberDetailsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

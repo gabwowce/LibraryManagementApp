@@ -1,0 +1,80 @@
+﻿<Window x:Class="LibraryManagementApp.Views.MemberDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryManagementApp.Views"
+        mc:Ignorable="d"
+        Title="Member Details" Background="Transparent"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="WidthAndHeight"
+        WindowStyle="None"
+        MouseDown="Window_MouseDown">
+    
+    <Border Background="#343434" CornerRadius="40" Padding="20,0,20,20" BorderThickness="5" BorderBrush="Black">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,0,0" Width="25" 
+                    Background="Transparent" BorderThickness="0"
+                    Click="CloseButton_Click" Style="{StaticResource ImageButtonStyle}">    
+                <Image Source="Images\Close.png"/>
+            </Button>
+
+            <Border Grid.Row="1" CornerRadius="10">
+                <StackPanel>
+                    <Border Width="1040" Height="21" Background="#343434" Margin="0,0,20,10"
+                             BorderBrush="#343434">
+
+                        <Grid Margin="0,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="MEMBER ID:" Margin="18,0,0,0" FontSize="16" Foreground="#F7FFF7"/>
+                            <TextBlock Grid.Column="1" Text="LOAN ID:" Margin="18,0,0,0" FontSize="16" Foreground="#F7FFF7"/>
+                            <TextBlock Grid.Column="2"  Text="BOOK ID:" Margin="18,0,0,0" FontSize="16" Foreground="#F7FFF7"/>
+                            <TextBlock Grid.Column="3" Text="TITLE:" Margin="18,0,0,0" FontSize="16" Foreground="#F7FFF7"/>
+                            <TextBlock Grid.Column="4" Text="DATE OF LOAN:" Margin="18,0,0,0" FontSize="16" Foreground="#F7FFF7"/>
+                            <TextBlock Grid.Column="5" Text="END DATE:" Margin="18,0,0,0" FontSize="16" Foreground="#F7FFF7"/>
+                            <TextBlock Grid.Column="6" Text="STATUS:" Margin="18,0,0,0" FontSize="16" Foreground="#F7FFF7"/>
+                        </Grid>
+                    </Border>
+
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Margin="10,10,10,0" MaxHeight="810">
+                        <ItemsControl ItemsSource="{Binding MembersDetails}" ItemTemplate="{StaticResource MembersDetailsTemplate}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </ScrollViewer>
+
+                </StackPanel>
+            </Border>
+
+            <Button Grid.Row="2" Content="Cancel" Style="{StaticResource ReserveButtonStyle}" Click="CloseButton_Click"
+                    Height="30" Width="100" HorizontalAlignment="Right" Margin="0,10,14,0"/>
+
+        </Grid>
+
+       
+
+
+
+    </Border>
+
+
+</Window>

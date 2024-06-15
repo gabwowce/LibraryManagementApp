@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
@@ -81,5 +82,50 @@ namespace LibraryManagementApp.Models
             }
             
         }
+
+
+        public async Task<ObservableCollection<MemberLoansDetails>> GetMemberLoansDetaisAsync(int memberId)
+        {
+            ObservableCollection<MemberLoansDetails> memberDetailsList = new ObservableCollection<MemberLoansDetails>();
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    await connection.OpenAsync();
+
+                    var command = new MySqlCommand(@"SELECT l.MemberID, b.BookID, LoanID, DateofLoan, EndDate, Status, b.Name 
+                                             FROM loans l
+                                             LEFT JOIN members m ON l.MemberID = m.MemberID 
+                                             LEFT JOIN books b ON l.BookID = b.BookID 
+                                             WHERE l.MemberID = @memberID", connection);
+                    command.Parameters.AddWithValue("@memberID", memberId);
+
+                    using (var reader = await command.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            var memberDetails = new MemberLoansDetails
+                            {
+                                MemberID = reader.IsDBNull(reader.GetOrdinal("MemberID")) ? 0 : reader.GetInt32(reader.GetOrdinal("MemberID")),
+                                LoanID = reader.IsDBNull(reader.GetOrdinal("LoanID")) ? 0 : reader.GetInt32(reader.GetOrdinal("LoanID")),
+                                BookID = reader.IsDBNull(reader.GetOrdinal("BookID")) ? 0 : reader.GetInt32(reader.GetOrdinal("BookID")),
+                                Title = reader.IsDBNull(reader.GetOrdinal("Name")) ? string.Empty : reader.GetString(reader.GetOrdinal("Name")),
+                                DateofLoan = reader.IsDBNull(reader.GetOrdinal("DateofLoan")) ? DateTime.MinValue : reader.GetDateTime(reader.GetOrdinal("DateofLoan")),
+                                EndDate = reader.IsDBNull(reader.GetOrdinal("EndDate")) ? DateTime.MinValue : reader.GetDateTime(reader.GetOrdinal("EndDate")),
+                                Status = reader.IsDBNull(reader.GetOrdinal("Status")) ? string.Empty : reader.GetString(reader.GetOrdinal("Status"))
+                            };
+                            memberDetailsList.Add(memberDetails);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"-----------> Error fetching Member loans details: {ex.Message}");
+            }
+
+            return memberDetailsList;
+        }
+
     }
 }

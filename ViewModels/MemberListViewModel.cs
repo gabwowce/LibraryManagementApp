@@ -16,8 +16,23 @@ namespace LibraryManagementApp.ViewModels
     {
         private readonly MemberRepository repository;
 
-        private ObservableCollection<Member> _members;
         public ICommand OpenLendBookWindowCommand { get; }
+        public ICommand OpenMemberLoanDetailsCommand { get; }
+
+
+        private ObservableCollection<MemberLoansDetails> _memberLoansDetails;
+       
+        public ObservableCollection<MemberLoansDetails> MemberLoansDetails
+        {
+            get => _memberLoansDetails;
+            set
+            {
+                _memberLoansDetails = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<Member> _members;
 
         public ObservableCollection<Member> Members
         {
@@ -46,6 +61,7 @@ namespace LibraryManagementApp.ViewModels
         {
             repository = new MemberRepository();
             OpenLendBookWindowCommand = new RelayCommand(OpenLendBookWindow);
+            OpenMemberLoanDetailsCommand = new RelayCommand(OpenMemberLoanDetailsWindow);
             _ = InitializeAsync();
         }
 
@@ -68,6 +84,16 @@ namespace LibraryManagementApp.ViewModels
                 Debug.WriteLine($"Error loading books: {ex.Message}");
             }
         }
+
+        private void OpenMemberLoanDetailsWindow(object parameter)
+        {
+            if (parameter is int memberId)
+            {
+                var memberLoanDetailsWindow = new MemberDetailsWindow(memberId);
+                memberLoanDetailsWindow.ShowDialog();
+            }
+        }
+
 
 
         private void OpenLendBookWindow(object parameter)

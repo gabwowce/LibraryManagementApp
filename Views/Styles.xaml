@@ -368,6 +368,8 @@
                         CommandParameter="{Binding Id}"
                         Height="30" Width="100" Margin="0,0,-40,0" HorizontalAlignment="Center"/>
                 <Button Grid.Column="4" Content="View History" x:Name="ViewHistoryButt" Visibility="Collapsed" Style="{StaticResource ReserveButtonStyle}" 
+                         Command="{Binding DataContext.OpenMemberLoanDetailsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                            CommandParameter="{Binding Id}"
                         Height="30" Width="100" Margin="0,0,14,0" HorizontalAlignment="Right"/>
             </Grid>
 
@@ -515,5 +517,51 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+
+
+    <DataTemplate x:Key="MembersDetailsTemplate">
+        <Border Width="1040" Height="50" Background="#F7FFF7" CornerRadius="10" BorderThickness="1" BorderBrush="#343434" Margin="0,00,0,10">
+
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect Color="#343434" Direction="320" ShadowDepth="4" BlurRadius="40" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Column="0" Text="{Binding MemberID}" Margin="14" FontSize="16"/>
+                <TextBlock Grid.Column="1" Text="{Binding LoanID}" Margin="14" FontSize="16"/>
+                <TextBlock Grid.Column="2" Text="{Binding BookID}" Margin="14" FontSize="16"/>
+                <TextBlock Grid.Column="3" Text="{Binding Title}" Margin="14" FontSize="16"/>
+                <TextBlock Grid.Column="4" Text="{Binding DateofLoan, StringFormat='yyyy-MM-dd'}" Margin="14" FontSize="16"/>
+                <TextBlock Grid.Column="5" Text="{Binding EndDate, StringFormat='yyyy-MM-dd'}" Margin="14" FontSize="16"/>
+                <TextBlock Grid.Column="6" Text="{Binding Status}" Margin="14" FontSize="16"/>
+
+            </Grid>
+
+            
+
+        </Border>
+    </DataTemplate>
+
 
 </ResourceDictionary>
