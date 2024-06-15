@@ -19,7 +19,7 @@
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="LOAN ID:" Margin="8,0,0,0" FontSize="16" Foreground="#F7FFF7"/>
                         <TextBlock Grid.Column="1"  Text="MEMBER ID:" Margin="8,0,0,0" FontSize="16" Foreground="#F7FFF7"/>

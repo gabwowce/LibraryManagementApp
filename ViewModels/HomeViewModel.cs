@@ -14,6 +14,7 @@ namespace LibraryManagementApp.ViewModels
     public class HomeViewModel: ObservableObject
     {
         private readonly BookRepository repository;
+        private readonly HomeViewInformationRepository infoRepository;
 
         public ICommand HomeViewCommand { get; }
         public ICommand MemberListViewCommand { get; }
@@ -49,6 +50,7 @@ namespace LibraryManagementApp.ViewModels
             _mainViewModel = mainViewModel ?? throw new ArgumentNullException(nameof(mainViewModel));
 
             repository = new BookRepository();
+            infoRepository = new HomeViewInformationRepository();
 
             AllBooksViewCommand = new RelayCommand(o => _mainViewModel.CurrentView = _mainViewModel.AllBooksVM);
             MemberListViewCommand = new RelayCommand(o => _mainViewModel.CurrentView = _mainViewModel.MemberListVM);
@@ -80,9 +82,8 @@ namespace LibraryManagementApp.ViewModels
         {
             try
             {
-                HomeViewInformationRepository infoRepository = new HomeViewInformationRepository();
-                var homeInfo = await infoRepository.GetHomeInformationAsync();
-                Debug.WriteLine($"-------> Error loading books---AllGOOD");
+                HomeInformation = await infoRepository.GetHomeInformationAsync();
+                Debug.WriteLine($"-------> Loading home information...");
             }
             catch (Exception ex)
             {

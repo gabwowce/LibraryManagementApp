@@ -79,7 +79,7 @@
                     </Border.Style>
 
                     <Border.InputBindings>
-                        <MouseBinding Gesture="LeftClick" Command="{Binding BookListViewCommand}" />
+                        <MouseBinding Gesture="LeftClick" Command="{Binding AllBooksViewCommand}" />
                     </Border.InputBindings>
 
                     <Grid>

@@ -439,7 +439,7 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="{Binding LoanID}" Margin="14" FontSize="16"/>
                 <TextBlock Grid.Column="1" Text="{Binding MemberID}" Margin="14" FontSize="16"/>
@@ -449,7 +449,7 @@
                 <TextBlock Grid.Column="5" Text="{Binding Status}" Margin="14" FontSize="16"/>
                 <Button Grid.Column="6" Content="View Member Details" x:Name="ViewDetailsButt" Visibility="Collapsed" Style="{StaticResource ReserveButtonStyle}" 
                         Command="{Binding DataContext.OpenLoanDetailsWindowCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                        CommandParameter="{Binding MemberID}" Height="30" Width="100" HorizontalAlignment="Right" Margin="0,0,14,0"/>
+                        CommandParameter="{Binding MemberID}" Height="30" Width="180" HorizontalAlignment="Right" Margin="0,0,14,0" HorizontalContentAlignment="Center"/>
             </Grid>
 
             <Border.Triggers>
